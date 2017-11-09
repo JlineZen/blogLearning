@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>getElementsByClassName实现</title>
+</head>
+<body>
+  <div id="test">
+    <p><span class="demo">123</span></p>
+    <p><span>456</span></p>
+    <p><span>789</span></p>
+    <p><span class="demo">012</span></p>
+    <p><span>345</span></p>
+  </div>
+  <script type="text/javascript">
+    // 自己的实现
+    var getElementsByClassName = function (ele, tagName, clsName) {
+          var elems = ele.getElementsByTagName(tagName)
+          var hasClass = function (node, cname) {
+                return node.classList.contains(cname)
+              }
+          var el
+          var len = elems.length
+          var result = new Array()
+          while (el=elems[--len]) {
+            if (hasClass(el, clsName)) {
+              result.push(el)
+            }
+          }
+          return result
+        }
+    var getId = function (id) {
+          return document.getElementById(id)
+        }
+    var node = getId('test')
+    var test = getElementsByClassName(node, 'span', 'demo')
+    console.log(test)
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>getElementsByClassName</title>
+</head>
+<body>
+  <div id="test">
+    <p><span class="demo-a">123</span></p>
+    <p><span>456</span></p>
+    <p><span>789</span></p>
+    <p><span class="demo-a">012</span></p>
+    <p><span>345</span></p>
+  </div>
+  <script type="text/javascript">
+    // Robert Nyman 05年实现
+    var getElementsByClassName = function (node, tag, clsName) {
+      var elements = (tag === '*' && node.all) ? node.all : node.getElementsByTagName(tag)
+      var result = []
+      var clsName = clsName.replace(/\-/g, '\\-')
+      var regTest = new RegExp("(^|\\s)" + clsName + "(\\s|$)")
+      console.log(regTest)
+      for (var i = 0, ele; i < elements.length; i++) {
+        ele = elements[i]
+        if (regTest.test(ele.className)) {
+          result.push(ele)
+        }
+      }
+      return result
+    } 
+    var node = document.getElementById('test')
+    var test = getElementsByClassName(node, 'span', 'demo-a')
+    console.log(test)
+  </script>
+</body>
+</html>
