@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移除DOM节点</title>
+</head>
+<body>
+	<div id="demo">
+		<div id="test1">容器1</div>
+		<div id="test2">容器2</div>
+		<div id="test3">容器3</div>
+	</div>
+	<button id='btn'>测试</button>
+	<script type="text/javascript">
+		var removeNode = !+'\v1' ? (function () {
+			var d
+			return function (node) {
+				if (node && node.tagName !== 'BODY') {
+					d = d || document.createElement('div')
+					d.appendChild(node)
+					d.innerHTML = ''
+				}
+			}
+		})() : function (node) {
+			if (node && node.parentNode && node.tagName !== 'BODY') {
+				node.parentNode.removeChild(node)
+			}
+		}
+		var target = document.getElementById('demo')
+		document.getElementById('btn').addEventListener('click', function () {
+			removeNode(target)
+		}, false)
+	</script>
+</body>
+</html>
