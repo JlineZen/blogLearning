@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AOP切面编程</title>
+</head>
+<body>
+	<script src="./aop.js"></script>
+	<script>
+		var CE = function (tag) {
+			return document.createElement(tag)
+		}
+		var log = function (log) {
+			console.log('log createElement')
+		}
+		var logCEFn = aop.before(CE, log)
+		var container = logCEFn('div')
+		console.log(container)
+	</script>
+</body>
+</html>
