@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数节流Throttle</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var throttle = function (fn, delay) {
+			var timer
+			return function () {
+				var __me = this
+				var __args = arguments
+				if (timer) return
+				timer = setTimeout(function () {
+					clearTimeout(timer)
+					timer = null
+					fn.apply(__me, __args)
+				}, delay || 100)
+			}
+		}
+
+		function logger () {
+			console.log(123)
+		}
+
+		var _throttle = function (fn, delay) {
+			var last = 0
+			return function () {
+				var now = + new Date()
+				var __delay = delay || 100
+				if (now - last > __delay) {
+					fn.apply(this, arguments)
+					last = now
+				}
+			}
+		}
+
+		window.addEventListener('resize', _throttle(logger), false)
+	</script>
+</body>
+</html>

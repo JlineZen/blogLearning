@@ -6,3 +6,4 @@
 * [没有比这更详细的闭包解释了](http://www.cnblogs.com/rubylouvre/archive/2009/07/24/1530074.html)
 * [一个简单的拾色器](https://github.com/JlineZen/blogLearning/blob/master/colorPicker/colorPicker.md)
 * [JS的AOP简单实现](https://github.com/JlineZen/blogLearning/blob/master/aop/aop.md)
+* [JS性能调优](https://github.com/JlineZen/blogLearning/blob/master/timerFn/conclusion.md)
