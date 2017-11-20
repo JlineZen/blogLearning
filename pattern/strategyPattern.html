@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>策略模式</title>
+</head>
+<body>
+	<input type="text" id="input1" placeholder="只能输入数字" >
+	<input type="text" id="input2" placeholder="只能输入数字、字母" >
+	<script type="text/javascript">
+		// 只能输入数字
+		function NumberStrategy () { }
+
+		NumberStrategy.prototype.rule = function (val) {
+			return val.replace(/[^\d]/g, '')
+		}
+
+		// 只能输入数字、字母
+		function CharStrategy () {}
+
+		CharStrategy.prototype.rule = function (val) {
+			return val.replace(/[^0-9a-zA-Z]/g, '')
+		}
+
+		// 过滤
+		var input1 = document.getElementById('input1')
+		var input2 = document.getElementById('input2')
+		function inputFilter (filterStrtegry) {
+			return function () {
+				this.value = filterStrtegry.rule(this.value)
+			}
+		}
+		input1.addEventListener('input', inputFilter(new NumberStrategy()), false)
+		input2.addEventListener('input', inputFilter(new CharStrategy()), false)
+	</script>
+</body>
+</html>
